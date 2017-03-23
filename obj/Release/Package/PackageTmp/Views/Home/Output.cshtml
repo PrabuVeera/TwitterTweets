@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Output";
+}
+@{
+    var grid = new WebGrid(source: Model, defaultSort: "Date", rowsPerPage: 20);
+}
+
+<h2>Got Here !!!</h2>
+
+@grid.GetHtml(columns: grid.Columns(
+                grid.Column("Tweets", "User Tweets", canSort: true, style: "text-align-center"),
+                grid.Column("TweetDate", "Tweeted Date", canSort: true, style: "text-align-center")             
+            ))

@@ -1,0 +1,64 @@
+﻿@using System.Web.Helpers
+@model TwitterTweets.Models.searchEntity
+@{
+    ViewBag.Title = "Tweet Search";
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/index.js")"></script>  
+    <script src="~/Scripts/jquery-3.2.0.min.js"></script>
+    <script>
+        $("#searchSubmit").click(function () {
+            window.location.href = "Output";
+        });
+    </script>
+ </head>
+
+<body>
+    <div id="mainContent">
+        <div id="contTitle">
+            Searching For Tweets
+            
+        </div>
+        <fieldset>
+            <div id="searchCont">
+                <form method="get">
+                    <div class="form-group">
+                        <div id="search">
+                            @using (Html.BeginForm("Output", "Home", FormMethod.Post))
+                            {
+                                @Html.LabelFor(model => model.UserName,"User Name")
+                                                                                    @*@Html.TextBox("UserName", null, new { autocomplete = "off", tabindex = 1, maxlength = "10", onchange = "$('form').submit()" })*@
+
+                                  @Html.TextBoxFor(model => model.UserName)
+                                <span id="tweetIcon">
+                                    <img src="~/Content/Images/images.png" type="image" id="searchIcon">
+                                </span>
+                            }
+
+                            <input type="submit" value="Submit" name="About" />
+
+                            <div class="" style="width:100%;text-align:center;padding:2%;margin-left:25%;">
+                                @Html.ValidationMessageFor(model => model.UserName)
+                                <div style="width:50%;">
+                                    <!--<input id="searchSubmit" type="submit" value="Search" onclick='window.location = "@*@Url.Action("Output", "Home")";' />-->
+                                </div>
+                            </div>
+                         </div>                     
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
